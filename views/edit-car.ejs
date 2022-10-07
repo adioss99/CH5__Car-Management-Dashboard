@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <aside class="aside-1">
+      <div class="text-center">
+        <img src="/image/logo.png" alt="logo" class="mt-2" /><br />
+        <div class="my-3">
+          <img src="/image/Group 2.png" class="aside-img" alt="logo" />
+          <p>Dashboard</p>
+        </div>
+        <div class="my-3">
+          <img src="/image/fi_truck.png" class="aside-img" alt="logo" />
+          <p class="fw-bold">Cars</p>
+        </div>
+      </div>
+    </aside>
+    <aside class="aside-2">
+      <div class="logo border-bottom"><img src="/image/logo 2.png" alt="logo2" /></div>
+      <div class="list-group mt-3 rounded-0">
+        <a href="#" class="list-group-item list-group-item-action border-0 text-secondary">CARS</a>
+        <a href="#" class="list-group-item list-group-item-action border-0 text-secondary">List Car</a>
+      </div>
+    </aside>
+    <main>
+      <nav class="border-bottom">
+        <div class="menu my-auto"><i class="fa-solid fa-bars"></i></div>
+        <div class="sub-menu">
+          <div class="search me-3">
+            <input type="text" class="form-control rounded-0 Field" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" />
+            <button class="btn btn-outline-primary rounded-0">Search</button>
+          </div>
+          <div class="profile mt-2">
+            <h6><i class="fa-solid fa-circle-user fa-2xl me-2"></i>Adi<i class="fa-solid fa-angle-down ms-2"></i></h6>
+          </div>
+        </div>
+      </nav>
+      <!-- edit dis -->
+      <section class="content">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item fw-bold"><a href="#">Cars</a></li>
+          <li class="breadcrumb-item fw-bold"><a href="/"> List Car</a></li>
+          <li class="breadcrumb-item" aria-current="page">Edit Car</li>
+        </ol>
+        <div class="mt-3" id="head">
+          <h4>Edit Car</h4>
+        </div>
+        <div id="car-card">
+          <div class="card" id="add-card">
+            <div class="card-body">
+              <form action="/api/v1/update/<%= car.id %>" method="POST" id="update-form" enctype="multipart/form-data" autocomplete="off">
+                <div class="p-3 mb-3">
+                  <div class="row mb-3">
+                    <div class="col-xl-2 col-lg-3">
+                      <label>Nama<label class="text-danger">*</label></label>
+                    </div>
+                    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-7">
+                      <input type="text" name="name_car" placeholder="Avanza" id="name_car" class="form-control" value="<%= car.name_car %>" required />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-xl-2 col-lg-3">
+                      <label>Sewa Per Hari<label class="text-danger">*</label></label>
+                    </div>
+                    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-7">
+                      <input type="text" name="price" placeholder="Rp.0,-" id="price" class="form-control" value="<%= car.price %>" required />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-xl-2 col-lg-3">
+                      <label>Ukuran<label class="text-danger">*</label></label>
+                    </div>
+                    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-7">
+                      <select class="form-select rounded-0"  name="id_car_size" aria-label="Default select example">
+                        <option value="<%= car.id_car_size %>" selected><%= car.size.car_size %></option>
+                        <% sizes.forEach(function(size){ %>
+                        <option value="<%= size.id %>"><%= size.car_size %></option>
+                        <% }); %>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-2 col-lg-3">
+                      <label>Foto</label>
+                    </div>
+                    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-7">
+                      <figure>
+                        <div class="input-group rounded-0">
+                          <input type="file" name="photo" value="<%= car.photo %>" accept="image/*" placeholder="gambar" class="form-control input-image border border-end-0" id="image_car" />
+                          <span class="input-group-text rounded-0 border border-start-0" style="background-color: #ffff"><i class="fa-solid fa-arrow-up-from-bracket"></i></span>
+                        </div>
+                        <figcaption class="text-secondary mt-1" style="font-size: 10px">File size max. 2MB</figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="add-car-btn">
+            <a href="/" class="btn btn-outline-primary" id="cancel-btn">Cancel</a>
+            <button type="submit" form="update-form" class="btn btn-primary" id="confirm-btn">Save</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="text/javascript" src="/script/rupiah.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>
