@@ -1,5 +1,3 @@
-// const Car = require('../model/car');
-// const Size = require('../model/car_size');
 const { Car } = require('../models');
 const { Size } = require('../models');
 const path = require('path');
