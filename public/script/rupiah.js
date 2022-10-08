@@ -1,4 +1,7 @@
-$('#price').keyup(function() {
+let rupiah = document.getElementById('price');
+rupiah.addEventListener('keyup', function (e) {
+  // tambahkan 'Rp.' pada saat form di ketik
+  // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
   rupiah.value = formatRupiah(this.value, 'Rp. ');
 });
 
@@ -17,5 +20,5 @@ function formatRupiah(angka, prefix) {
   }
 
   rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-  return prefix == undefined ? rupiah : rupiah ? 'Rp. ' + rupiah : '';
+  return prefix == undefined ? rupiah : rupiah ? 'Rp ' + rupiah : '';
 }
