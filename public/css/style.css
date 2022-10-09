@@ -70,7 +70,7 @@ nav {
   margin-top: 70px;
   padding: 20px;
   background-color: #f0f0f0;
-  min-height: 88vh;
+  min-height: 90vh;
 }
 .list-group :nth-child(2) {
   color: black;
